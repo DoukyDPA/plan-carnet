@@ -176,3 +176,88 @@ body.pc-hs .markdown-rendered .pc-annex-head { border-left: none !important; pad
 .pc-note-card input.pc-note-title-input::placeholder { color: var(--text-faint); font-weight: 400; font-style: italic; }
 .pc-note-card input.pc-note-title-input:hover { border-color: rgba(var(--pc-c), .3); }
 .pc-note-card input.pc-note-title-input:focus { border-color: rgb(var(--pc-c)); background: var(--background-primary); }
+
+/* ===== Apparence des niveaux (variables posées par le plugin) ===== */
+.pc-full-width { width: 100%; }
+body.pc-hs.pc-hs {
+  --h1-size: var(--pc-h1-size); --h1-color: var(--pc-h1-color); --h1-weight: var(--pc-h1-weight);
+  --h2-size: var(--pc-h2-size); --h2-color: var(--pc-h2-color); --h2-weight: var(--pc-h2-weight);
+  --h3-size: var(--pc-h3-size); --h3-color: var(--pc-h3-color); --h3-weight: var(--pc-h3-weight);
+  --h4-size: var(--pc-h4-size); --h4-color: var(--pc-h4-color); --h4-weight: var(--pc-h4-weight);
+  --h5-size: var(--pc-h5-size); --h5-color: var(--pc-h5-color); --h5-weight: var(--pc-h5-weight);
+  --h6-size: var(--pc-h6-size); --h6-color: var(--pc-h6-color); --h6-weight: var(--pc-h6-weight);
+}
+body.pc-hs.pc-h1-upper .markdown-rendered h1,
+body.pc-hs.pc-h1-upper .cm-line.HyperMD-header-1 { text-transform: uppercase; letter-spacing: .04em; }
+body.pc-hs.pc-h1-smallcaps .markdown-rendered h1,
+body.pc-hs.pc-h1-smallcaps .cm-line.HyperMD-header-1 { font-variant: small-caps; letter-spacing: .02em; }
+body.pc-hs.pc-h1-underline .markdown-rendered h1,
+body.pc-hs.pc-h1-underline .cm-line.HyperMD-header-1 { border-bottom: 2px solid var(--pc-h1-accent); padding-bottom: .12em; }
+body.pc-hs.pc-h1-band .markdown-rendered h1,
+body.pc-hs.pc-h1-band .cm-line.HyperMD-header-1 { background: color-mix(in srgb, var(--pc-h1-accent) 13%, transparent); border-radius: 6px; padding: .12em .45em !important; }
+body.pc-hs.pc-h1-bar .markdown-rendered h1,
+body.pc-hs.pc-h1-bar .cm-line.HyperMD-header-1 { border-left: 4px solid var(--pc-h1-accent); padding-left: .5em !important; }
+body.pc-h1-labelcolor .plan-carnet .pc-lvl-1 > .pc-label { color: var(--pc-h1-color); }
+body.pc-hs.pc-h2-upper .markdown-rendered h2,
+body.pc-hs.pc-h2-upper .cm-line.HyperMD-header-2 { text-transform: uppercase; letter-spacing: .04em; }
+body.pc-hs.pc-h2-smallcaps .markdown-rendered h2,
+body.pc-hs.pc-h2-smallcaps .cm-line.HyperMD-header-2 { font-variant: small-caps; letter-spacing: .02em; }
+body.pc-hs.pc-h2-underline .markdown-rendered h2,
+body.pc-hs.pc-h2-underline .cm-line.HyperMD-header-2 { border-bottom: 2px solid var(--pc-h2-accent); padding-bottom: .12em; }
+body.pc-hs.pc-h2-band .markdown-rendered h2,
+body.pc-hs.pc-h2-band .cm-line.HyperMD-header-2 { background: color-mix(in srgb, var(--pc-h2-accent) 13%, transparent); border-radius: 6px; padding: .12em .45em !important; }
+body.pc-hs.pc-h2-bar .markdown-rendered h2,
+body.pc-hs.pc-h2-bar .cm-line.HyperMD-header-2 { border-left: 4px solid var(--pc-h2-accent); padding-left: .5em !important; }
+body.pc-h2-labelcolor .plan-carnet .pc-lvl-2 > .pc-label { color: var(--pc-h2-color); }
+body.pc-hs.pc-h3-upper .markdown-rendered h3,
+body.pc-hs.pc-h3-upper .cm-line.HyperMD-header-3 { text-transform: uppercase; letter-spacing: .04em; }
+body.pc-hs.pc-h3-smallcaps .markdown-rendered h3,
+body.pc-hs.pc-h3-smallcaps .cm-line.HyperMD-header-3 { font-variant: small-caps; letter-spacing: .02em; }
+body.pc-hs.pc-h3-underline .markdown-rendered h3,
+body.pc-hs.pc-h3-underline .cm-line.HyperMD-header-3 { border-bottom: 2px solid var(--pc-h3-accent); padding-bottom: .12em; }
+body.pc-hs.pc-h3-band .markdown-rendered h3,
+body.pc-hs.pc-h3-band .cm-line.HyperMD-header-3 { background: color-mix(in srgb, var(--pc-h3-accent) 13%, transparent); border-radius: 6px; padding: .12em .45em !important; }
+body.pc-hs.pc-h3-bar .markdown-rendered h3,
+body.pc-hs.pc-h3-bar .cm-line.HyperMD-header-3 { border-left: 4px solid var(--pc-h3-accent); padding-left: .5em !important; }
+body.pc-h3-labelcolor .plan-carnet .pc-lvl-3 > .pc-label { color: var(--pc-h3-color); }
+body.pc-hs.pc-h4-upper .markdown-rendered h4,
+body.pc-hs.pc-h4-upper .cm-line.HyperMD-header-4 { text-transform: uppercase; letter-spacing: .04em; }
+body.pc-hs.pc-h4-smallcaps .markdown-rendered h4,
+body.pc-hs.pc-h4-smallcaps .cm-line.HyperMD-header-4 { font-variant: small-caps; letter-spacing: .02em; }
+body.pc-hs.pc-h4-underline .markdown-rendered h4,
+body.pc-hs.pc-h4-underline .cm-line.HyperMD-header-4 { border-bottom: 2px solid var(--pc-h4-accent); padding-bottom: .12em; }
+body.pc-hs.pc-h4-band .markdown-rendered h4,
+body.pc-hs.pc-h4-band .cm-line.HyperMD-header-4 { background: color-mix(in srgb, var(--pc-h4-accent) 13%, transparent); border-radius: 6px; padding: .12em .45em !important; }
+body.pc-hs.pc-h4-bar .markdown-rendered h4,
+body.pc-hs.pc-h4-bar .cm-line.HyperMD-header-4 { border-left: 4px solid var(--pc-h4-accent); padding-left: .5em !important; }
+body.pc-h4-labelcolor .plan-carnet .pc-lvl-4 > .pc-label { color: var(--pc-h4-color); }
+body.pc-hs.pc-h5-upper .markdown-rendered h5,
+body.pc-hs.pc-h5-upper .cm-line.HyperMD-header-5 { text-transform: uppercase; letter-spacing: .04em; }
+body.pc-hs.pc-h5-smallcaps .markdown-rendered h5,
+body.pc-hs.pc-h5-smallcaps .cm-line.HyperMD-header-5 { font-variant: small-caps; letter-spacing: .02em; }
+body.pc-hs.pc-h5-underline .markdown-rendered h5,
+body.pc-hs.pc-h5-underline .cm-line.HyperMD-header-5 { border-bottom: 2px solid var(--pc-h5-accent); padding-bottom: .12em; }
+body.pc-hs.pc-h5-band .markdown-rendered h5,
+body.pc-hs.pc-h5-band .cm-line.HyperMD-header-5 { background: color-mix(in srgb, var(--pc-h5-accent) 13%, transparent); border-radius: 6px; padding: .12em .45em !important; }
+body.pc-hs.pc-h5-bar .markdown-rendered h5,
+body.pc-hs.pc-h5-bar .cm-line.HyperMD-header-5 { border-left: 4px solid var(--pc-h5-accent); padding-left: .5em !important; }
+body.pc-h5-labelcolor .plan-carnet .pc-lvl-5 > .pc-label { color: var(--pc-h5-color); }
+body.pc-hs.pc-h6-upper .markdown-rendered h6,
+body.pc-hs.pc-h6-upper .cm-line.HyperMD-header-6 { text-transform: uppercase; letter-spacing: .04em; }
+body.pc-hs.pc-h6-smallcaps .markdown-rendered h6,
+body.pc-hs.pc-h6-smallcaps .cm-line.HyperMD-header-6 { font-variant: small-caps; letter-spacing: .02em; }
+body.pc-hs.pc-h6-underline .markdown-rendered h6,
+body.pc-hs.pc-h6-underline .cm-line.HyperMD-header-6 { border-bottom: 2px solid var(--pc-h6-accent); padding-bottom: .12em; }
+body.pc-hs.pc-h6-band .markdown-rendered h6,
+body.pc-hs.pc-h6-band .cm-line.HyperMD-header-6 { background: color-mix(in srgb, var(--pc-h6-accent) 13%, transparent); border-radius: 6px; padding: .12em .45em !important; }
+body.pc-hs.pc-h6-bar .markdown-rendered h6,
+body.pc-hs.pc-h6-bar .cm-line.HyperMD-header-6 { border-left: 4px solid var(--pc-h6-accent); padding-left: .5em !important; }
+body.pc-h6-labelcolor .plan-carnet .pc-lvl-6 > .pc-label { color: var(--pc-h6-color); }
+body.pc-hs .cm-header { color: inherit; }
+body.pc-hs .cm-line[class*="HyperMD-header-"] { padding-top: .35em; }
+body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-1 { margin-inline-start: calc(1 * var(--pc-indent-px, 22px)); }
+body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-2 { margin-inline-start: calc(2 * var(--pc-indent-px, 22px)); }
+body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-3 { margin-inline-start: calc(3 * var(--pc-indent-px, 22px)); }
+body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-4 { margin-inline-start: calc(4 * var(--pc-indent-px, 22px)); }
+body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-5 { margin-inline-start: calc(5 * var(--pc-indent-px, 22px)); }
+body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-6 { margin-inline-start: calc(6 * var(--pc-indent-px, 22px)); }

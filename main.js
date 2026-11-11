@@ -427,36 +427,25 @@ var APPEARANCE_DEFAULTS = {
   indentPx: 22,
   levels: PRESET_CONTRASTE.map((l) => ({ ...l }))
 };
-function buildCss(s) {
-  const out = [];
-  const vars = [];
+var LEVEL_CLASS_RE = /^pc-h[1-6]-/;
+function appearanceProps(s) {
+  const vars = {};
+  const classes = [];
   s.levels.forEach((l, i) => {
     const n = i + 1;
-    const c = l.useColor ? l.color : "var(--text-normal)";
-    const accent = l.useColor ? l.color : "var(--text-accent)";
-    vars.push(`--h${n}-size:${l.size}em;`, `--h${n}-color:${c};`, `--h${n}-weight:${l.bold ? 700 : 500};`);
-    const sel = `body.pc-hs .markdown-rendered h${n}, body.pc-hs .cm-line.HyperMD-header-${n}`;
-    const rules = [];
-    if (l.transform === "uppercase") rules.push("text-transform:uppercase;letter-spacing:.04em;");
-    if (l.transform === "small-caps") rules.push("font-variant:small-caps;letter-spacing:.02em;");
-    if (l.deco === "underline") rules.push(`border-bottom:2px solid ${accent};padding-bottom:.12em;`);
-    if (l.deco === "band")
-      rules.push(
-        `background:color-mix(in srgb, ${accent} 13%, transparent);border-radius:6px;padding:.12em .45em !important;`
-      );
-    if (l.deco === "bar") rules.push(`border-left:4px solid ${accent};padding-left:.5em !important;`);
-    if (rules.length) out.push(`${sel}{${rules.join("")}}`);
-    if (l.useColor) out.push(`.plan-carnet .pc-lvl-${n} > .pc-label{color:${l.color};}`);
+    vars[`--pc-h${n}-size`] = `${l.size}em`;
+    vars[`--pc-h${n}-color`] = l.useColor ? l.color : "var(--text-normal)";
+    vars[`--pc-h${n}-weight`] = l.bold ? "700" : "500";
+    vars[`--pc-h${n}-accent`] = l.useColor ? l.color : "var(--text-accent)";
+    if (l.transform === "uppercase") classes.push(`pc-h${n}-upper`);
+    if (l.transform === "small-caps") classes.push(`pc-h${n}-smallcaps`);
+    if (l.deco === "underline") classes.push(`pc-h${n}-underline`);
+    if (l.deco === "band") classes.push(`pc-h${n}-band`);
+    if (l.deco === "bar") classes.push(`pc-h${n}-bar`);
+    if (l.useColor) classes.push(`pc-h${n}-labelcolor`);
   });
-  out.unshift(`body.pc-hs.pc-hs{${vars.join("")}}`);
-  out.push(
-    `body.pc-hs .cm-header{color:inherit;}`,
-    `body.pc-hs .cm-line[class*="HyperMD-header-"]{padding-top:.35em;}`
-  );
-  for (let d = 1; d <= 6; d++) {
-    out.push(`body.pc-indent .markdown-source-view.mod-cm6 .cm-line.pc-ind-${d}{margin-inline-start:${d * s.indentPx}px;}`);
-  }
-  return out.join("\n");
+  vars["--pc-indent-px"] = `${s.indentPx}px`;
+  return { vars, classes };
 }
 var indentExtension = import_view.ViewPlugin.fromClass(
   class {
@@ -578,12 +567,12 @@ var WebLinkModal = class extends import_obsidian.Modal {
     let urlEl;
     new import_obsidian.Setting(this.contentEl).setName("Adresse").addText((t) => {
       t.setPlaceholder("https://\u2026").setValue(url).onChange((v) => url = v);
-      t.inputEl.style.width = "100%";
+      t.inputEl.addClass("pc-full-width");
       urlEl = t.inputEl;
     });
     new import_obsidian.Setting(this.contentEl).setName("Texte affich\xE9").setDesc("Facultatif. Vide : l'adresse s'affiche telle quelle.").addText((t) => {
       t.setValue(label).onChange((v) => label = v);
-      t.inputEl.style.width = "100%";
+      t.inputEl.addClass("pc-full-width");
       t.inputEl.addEventListener("keydown", (e) => e.key === "Enter" && (e.preventDefault(), submit()));
     });
     urlEl.addEventListener("keydown", (e) => e.key === "Enter" && (e.preventDefault(), submit()));
@@ -780,7 +769,7 @@ var TitleModal = class extends import_obsidian2.Modal {
     };
     new import_obsidian2.Setting(this.contentEl).setName("Titre").addText((t) => {
       t.setValue(this.value).onChange((v) => this.value = v);
-      t.inputEl.style.width = "100%";
+      t.inputEl.addClass("pc-full-width");
       t.inputEl.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -1032,7 +1021,7 @@ async function writeText(app, file, oldText, newText) {
   if (oldText === newText) return;
   const ed = editorFor(app, file);
   if (!ed) {
-    await app.vault.modify(file, newText);
+    await app.vault.process(file, () => newText);
     return;
   }
   let p = 0;
@@ -2372,7 +2361,7 @@ var PlanSettingTab = class extends import_obsidian2.PluginSettingTab {
     ).setDesc("Pour mettre en page les sections d\xE9j\xE0 \xE9crites : commande \xAB Appliquer les mises en page \xE0 toute la note \xBB.");
     new import_obsidian2.Setting(el).setName("Apparence des niveaux").setHeading();
     new import_obsidian2.Setting(el).setName("Styliser les titres").setDesc("Applique les r\xE9glages ci-dessous \xE0 toutes les notes, en \xE9dition comme en lecture.").addToggle((t) => t.setValue(st.stylesOn).onChange(async (v) => (st.stylesOn = v, this.save())));
-    new import_obsidian2.Setting(el).setName("D\xE9caler le texte selon le niveau").setDesc("Comme dans OneNote : chaque niveau et son texte s'\xE9cartent un peu plus de la marge (mode \xE9dition).").addToggle((t) => t.setValue(st.indentOn).onChange(async (v) => (st.indentOn = v, this.save()))).addSlider(
+    new import_obsidian2.Setting(el).setName("D\xE9caler le texte selon le niveau").setDesc("Chaque niveau et son texte s'\xE9cartent un peu plus de la marge (mode \xE9dition).").addToggle((t) => t.setValue(st.indentOn).onChange(async (v) => (st.indentOn = v, this.save()))).addSlider(
       (sl) => sl.setLimits(8, 48, 2).setValue(st.indentPx).setDynamicTooltip().onChange(async (v) => (st.indentPx = v, this.save()))
     );
     new import_obsidian2.Setting(el).setName("Pr\xE9r\xE9glages").addButton(
@@ -2430,7 +2419,7 @@ var PlanCarnetPlugin = class extends import_obsidian2.Plugin {
   constructor() {
     super(...arguments);
     this.settings = { ...DEFAULTS };
-    this.styleEl = null;
+    this.appearanceVars = [];
     this.restoreLinks = null;
   }
   async saveSettings() {
@@ -2443,8 +2432,13 @@ var PlanCarnetPlugin = class extends import_obsidian2.Plugin {
   }
   applyAppearance() {
     const s = this.settings;
-    if (this.styleEl) this.styleEl.textContent = buildCss(s);
-    document.body.toggleClass("pc-hs", s.stylesOn);
+    const body = document.body;
+    const { vars, classes } = appearanceProps(s);
+    for (const [k, v] of Object.entries(vars)) body.style.setProperty(k, v);
+    this.appearanceVars = Object.keys(vars);
+    for (const c of Array.from(body.classList)) if (LEVEL_CLASS_RE.test(c)) body.removeClass(c);
+    if (classes.length) body.addClass(...classes);
+    body.toggleClass("pc-hs", s.stylesOn);
     document.body.toggleClass("pc-indent", s.indentOn);
   }
   async onload() {
@@ -2547,10 +2541,7 @@ var PlanCarnetPlugin = class extends import_obsidian2.Plugin {
         new TrashPicker(this.app, this.settings.trash, (t) => this.restore(t)).open();
       }
     });
-    safe("style des niveaux", () => {
-      this.styleEl = document.head.createEl("style", { attr: { id: "plan-carnet-niveaux" } });
-      this.applyAppearance();
-    });
+    safe("style des niveaux", () => this.applyAppearance());
     safe("d\xE9calage du texte", () => this.registerEditorExtension(indentExtension));
     safe("masquage des notes", () => this.registerEditorExtension(hideNotesField));
     safe("titres de notes en lecture", () => this.registerMarkdownPostProcessor((el) => {
@@ -2701,10 +2692,12 @@ var PlanCarnetPlugin = class extends import_obsidian2.Plugin {
     this.restoreLinks = () => ws.openLinkText = orig;
   }
   onunload() {
-    var _a, _b;
+    var _a;
     (_a = this.restoreLinks) == null ? void 0 : _a.call(this);
-    (_b = this.styleEl) == null ? void 0 : _b.remove();
-    document.body.removeClass("pc-hs", "pc-indent");
+    const body = document.body;
+    for (const k of this.appearanceVars) body.style.removeProperty(k);
+    for (const c of Array.from(body.classList)) if (LEVEL_CLASS_RE.test(c)) body.removeClass(c);
+    body.removeClass("pc-hs", "pc-indent");
   }
   isAnnex(t) {
     return !!ruleFor(this.settings.layoutRules, t);

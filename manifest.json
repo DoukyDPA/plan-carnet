@@ -1,7 +1,7 @@
 {
   "id": "plan-carnet",
   "name": "Plan carnet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "1.4.0",
   "description": "Collapsible outline of a note's headings: reorder sections and subsections by drag and drop, within a single file.",
   "author": "Daniel Pigeon-Angelini (DPA)",
