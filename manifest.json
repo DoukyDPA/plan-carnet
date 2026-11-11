@@ -1,0 +1,9 @@
+{
+  "id": "plan-carnet",
+  "name": "Plan carnet",
+  "version": "0.14.1",
+  "minAppVersion": "1.4.0",
+  "description": "Arbre repliable des titres d'une note : réorganise sections et sous-sections par glisser-déposer, façon OneNote, dans un seul fichier.",
+  "author": "DPA",
+  "isDesktopOnly": false
+}

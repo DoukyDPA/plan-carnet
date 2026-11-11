@@ -1,0 +1,99 @@
+{
+  "side": "left",
+  "stylesOn": true,
+  "indentOn": true,
+  "indentPx": 22,
+  "levels": [
+    {
+      "size": 2,
+      "useColor": true,
+      "color": "#9c3d1c",
+      "bold": true,
+      "transform": "uppercase",
+      "deco": "band"
+    },
+    {
+      "size": 1.55,
+      "useColor": true,
+      "color": "#2c5f8d",
+      "bold": true,
+      "transform": "none",
+      "deco": "underline"
+    },
+    {
+      "size": 1.25,
+      "useColor": true,
+      "color": "#3f7a3a",
+      "bold": true,
+      "transform": "none",
+      "deco": "bar"
+    },
+    {
+      "size": 1.08,
+      "useColor": true,
+      "color": "#7a4f9c",
+      "bold": true,
+      "transform": "small-caps",
+      "deco": "none"
+    },
+    {
+      "size": 1,
+      "useColor": true,
+      "color": "#8a6a2a",
+      "bold": true,
+      "transform": "none",
+      "deco": "none"
+    },
+    {
+      "size": 1,
+      "useColor": false,
+      "color": "#666666",
+      "bold": false,
+      "transform": "none",
+      "deco": "none"
+    }
+  ],
+  "layoutAuto": true,
+  "layoutRules": [
+    {
+      "titles": "Notes, Note",
+      "type": "note",
+      "label": "Notes",
+      "fold": ""
+    },
+    {
+      "titles": "Voir aussi",
+      "type": "info",
+      "label": "A savoir",
+      "fold": ""
+    },
+    {
+      "titles": "Références",
+      "type": "warning",
+      "label": "Références",
+      "fold": ""
+    },
+    {
+      "titles": "Personnages",
+      "type": "info",
+      "label": "",
+      "fold": ""
+    },
+    {
+      "titles": "Attention",
+      "type": "bug",
+      "label": "Attention",
+      "fold": ""
+    }
+  ],
+  "linkTrigger": "@@",
+  "linkSuggestOn": true,
+  "linksNewTab": true,
+  "notesHidden": false,
+  "notesMarkdown": false,
+  "statuses": {},
+  "notesSide": "right",
+  "notesPanelCreated": true,
+  "trash": [],
+  "notesPreview": false
+}
