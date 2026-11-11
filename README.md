@@ -4,8 +4,6 @@ Work on a long note like a notebook: as a collapsible tree of sections that you 
 
 *Version française plus bas.*
 
-![Plan carnet](./images/screenshot.png)
-
 ## Why
 
 Long documents (a novel, a dictionary, a thesis, a course) quickly become hard to navigate in one file. Splitting them into dozens of notes solves that, but you lose the ability to read and export the whole text at once. Plan carnet keeps one file per project and gives you a notebook-style outline on top of it. Your headings are the structure: nothing is stored outside your note.
